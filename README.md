@@ -22,5 +22,6 @@ CPU model will appear in `status-left` or `status-right`, after the following co
   set -g @plugin 'charlietag/tmux-cpu-model'
 
   # Automatically **append** cpu model into "status-left" or "status-right"
-  set -g @cpu-display 'right' # [ left | right | none ]
+  set -g @cpu-model-mode 'right' # [ left | right | none ]
+  set -g @cpu-model-colour 'fg=colour232,bg=colour2,bold'
   ```
