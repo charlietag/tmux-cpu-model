@@ -11,7 +11,7 @@ This pllugin should work with any themes well.
 
 Requirements:
 
-Due to use the command set -g`a` status-left / status-right 
+Due to use the command set -g**a** status-left / status-right 
 
 Make sure set these config lines **AFTER** `theme plugin`
 
