@@ -11,6 +11,10 @@ This pllugin should work with any themes well.
 
 Requirements:
 
+Make sure set these config lines after `theme plugin`
+
+And it would be better put tmux-cpu-model config lines after `status style like` setup !
+
 `set -g status-left-length 40`   # more than 40, this plugin will use 40 characters
 
 `set -g status-right-length 40`  # > more than 40, this plugin will use 40 characters
