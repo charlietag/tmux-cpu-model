@@ -9,15 +9,18 @@ This pllugin should work with any themes well.
 # Installation
 ## Installation with [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) (recommended)
 
-Requirements:
+Notice:
 
 Due to use the command set -g**a** status-left / status-right 
 
-Make sure set these config lines **AFTER** `theme plugin`
-
-And it would be better put tmux-cpu-model config lines **AFTER** `status style like` setup !
+`And it would be better put tmux-cpu-model config lines **AFTER** `status style like` setup !`
 
 Status left / right length will be added by 40 automatically, because this plugin will use 40 characters
+
+
+Requirements:
+
+Make sure set these config lines **AFTER** `theme plugin`
 
 Add plugin to the list of TPM plugins in `.tmux.conf`:
 
