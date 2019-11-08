@@ -17,9 +17,11 @@ Make sure set these config lines **AFTER** `theme plugin`
 
 And it would be better put tmux-cpu-model config lines **AFTER** `status style like` setup !
 
-`set -g status-left-length 40`   # more than 40, this plugin will use 40 characters
+~~ `set -g status-left-length 40`   # more than 40, this plugin will use 40 characters ~~
 
-`set -g status-right-length 40`  # > more than 40, this plugin will use 40 characters
+~~ `set -g status-right-length 40`  # > more than 40, this plugin will use 40 characters ~~
+
+Status left / right length will be added by 40 automatically
 
 Add plugin to the list of TPM plugins in `.tmux.conf`:
 
@@ -72,6 +74,7 @@ Sample config in ~/.tmux.conf
 
 ```bash
 # For installing plugin - tmux-cpu-model --- Must put these lines after plugins which change status-style like powerline-themes
+# ... theme plugins before tmux-cpu-model plugin...
 set -g @plugin 'charlietag/tmux-cpu-model'
 
 # Automatically **append** cpu model into "status-left" or "status-right"
