@@ -9,7 +9,7 @@ This pllugin should work with any themes well.
 # Installation
 ## Installation with [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) (recommended)
 
-Notice:
+### Notice:
 
 Due to use the command set -g**a** status-left / status-right 
 
@@ -18,7 +18,7 @@ Due to use the command set -g**a** status-left / status-right
 Status left / right length will be added by 40 automatically, because this plugin will use 40 characters
 
 
-Requirements:
+### Requirements:
 
 Make sure set these config lines **AFTER** `theme plugin`
 
@@ -30,7 +30,7 @@ Hit `prefix + I` to fetch the plugin and source it.
 
 CPU model name and counts will now display in `status-left` or `status-right`, after the config setup and reloaded.
 
-### Manual Installation
+## Manual Installation
 
 Clone the repo:
 
@@ -48,7 +48,7 @@ Reload TMUX environment:
 CPU model name and counts will now display in `status-left` or `status-right`, after the config setup and reloaded.
 
 
-## Examples
+# Examples
 
 tmux-cpu-mode-left:<br/>
 ![tmux-cpu-mode-left](/screenshots/tmux-cpu-mode-left.png)
@@ -57,7 +57,7 @@ tmux-cpu-mode-right:<br/>
 ![tmux-cpu-mode-right](/screenshots/tmux-cpu-mode-right.png)
 
 
-## Customization
+# Customization
 
 Here are all available options with their default values:
 
