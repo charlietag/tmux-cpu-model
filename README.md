@@ -55,9 +55,6 @@ Here are all available options with their default values:
 @cpu-model-colour 'fg=colour232,bg=colour2,bold'    # define style for the displayed cpu info
 ```
 
-Don't forget to reload tmux environment (`$ tmux source-file ~/.tmux.conf`)
-after you do this.
-
 
 # Usage
 
