@@ -69,7 +69,7 @@ set -g @plugin 'charlietag/tmux-cpu-model'
 
 # Automatically **append** cpu model into "status-left" or "status-right"
 set -g @cpu-model-mode 'right' # [ left | right | none ]
-set -g @cpu-model-colour 'fg=colour232,bg=colour3,bold'
+set -g @cpu-model-colour 'fg=colour232,bg=colour2,bold'
 ```
 
 Reload tmux config and check your cpu model name and counts
