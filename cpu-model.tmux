@@ -25,12 +25,12 @@ main() {
 
 
   # Start to apply tmux-cpu-model plugin
-  tmux set -g status-left-length ${new_status_left_length}
-  tmux set -g status-right-length ${new_status_right_length}
   if [[ "${align}" = "left" ]]; then
+    tmux set -g status-left-length ${new_status_left_length}
     tmux set -ag status-left "#[${cpu_colour}] ${cpu_model_name} "
 
   elif [[ "${align}" = "right" ]]; then
+    tmux set -g status-right-length ${new_status_right_length}
     tmux set -ag status-right "#[${cpu_colour}] ${cpu_model_name} "
 
   else
