@@ -6,7 +6,7 @@ This plugin is compatible with Tmux plugin manager([TPM](https://github.com/tmux
 
 This pllugin should work with any themes well.
 
-# Usage
+# Installation
 ## Installation with [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) (recommended)
 
 Requirements:
