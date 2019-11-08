@@ -11,9 +11,9 @@ This pllugin should work with any themes well.
 
 Requirements:
 
-`set -g status-left-length 40` # > 40, this plugin will use 40 characters
+`set -g status-left-length 40`   # more than 40, this plugin will use 40 characters
 
-`set -g status-right-length 40` # > 40, this plugin will use 40 characters
+`set -g status-right-length 40`  # > more than 40, this plugin will use 40 characters
 
 Add plugin to the list of TPM plugins in `.tmux.conf`:
 
