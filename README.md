@@ -71,7 +71,7 @@ Here are all available options with their default values:
 Sample config in ~/.tmux.conf
 
 ```bash
-# For installing plugin - tmux-cpu-model
+# For installing plugin - tmux-cpu-model --- Must put these lines after plugins which change status-style like powerline-themes
 set -g @plugin 'charlietag/tmux-cpu-model'
 
 # Automatically **append** cpu model into "status-left" or "status-right"
