@@ -17,11 +17,7 @@ Make sure set these config lines **AFTER** `theme plugin`
 
 And it would be better put tmux-cpu-model config lines **AFTER** `status style like` setup !
 
-~~ `set -g status-left-length 40`   # more than 40, this plugin will use 40 characters ~~
-
-~~ `set -g status-right-length 40`  # > more than 40, this plugin will use 40 characters ~~
-
-Status left / right length will be added by 40 automatically
+Status left / right length will be added by 40 automatically, because this plugin will use 40 characters
 
 Add plugin to the list of TPM plugins in `.tmux.conf`:
 
