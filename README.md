@@ -83,6 +83,11 @@ set -g @cpu-model-colour 'fg=colour232,bg=colour2,bold'
 
 Reload tmux config and check your cpu model name and counts
 
+# Other goodies
+
+- [tmux-themes](https://github.com/charlietag/tmux-themes) - simple colorful theme made by CharlieTag
+
+
 # License
 
 [MIT license](https://opensource.org/licenses/MIT)
