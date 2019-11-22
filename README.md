@@ -11,7 +11,7 @@ This pllugin should work with any themes well.
 
 ### Notice:
 
-Due to use the command set -g**a** status-left / status-right 
+Due to using the command set -g**a** status-left / status-right 
 
 `And it would be better put tmux-cpu-model config lines **AFTER** `status style like` setup !`
 
