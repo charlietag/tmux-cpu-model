@@ -24,12 +24,13 @@ main() {
   [[ -z "${cpu_colour}" ]] && cpu_colour="fg=colour232,bg=colour2,bold"
 
   local cpu_model_mode_pre="$(tmux show-option -gqv "@cpu-model-mode-pre")"
+  local cpu_model_exists="$(tmux show-option -gqv "status-left"| grep -i cpu | grep -vE "^@" ; tmux show-option -gqv "status-right"| grep -i cpu | grep -vE "^@" )"
 
 
 
   # Start to apply tmux-cpu-model plugin
   if [[ "${align}" = "left" ]]; then
-    if [[ "${cpu_model_mode_pre}" != "left" ]]; then
+    if [[ "${cpu_model_mode_pre}" != "left" ]] || [[ -z "${cpu_model_exists}" ]]; then
       tmux set -g status-left-length ${new_status_left_length}
       tmux set -g status-right-length ${default_status_right_length}
 
@@ -37,7 +38,7 @@ main() {
     fi
 
   elif [[ "${align}" = "right" ]]; then
-    if [[ "${cpu_model_mode_pre}" != "right" ]]; then
+    if [[ "${cpu_model_mode_pre}" != "right" ]] || [[ -z "${cpu_model_exists}" ]]; then
       tmux set -g status-left-length ${default_status_left_length}
       tmux set -g status-right-length ${new_status_right_length}
 
