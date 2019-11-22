@@ -23,24 +23,34 @@ main() {
   local cpu_colour="$(tmux show-option -gqv "@cpu-model-colour")"
   [[ -z "${cpu_colour}" ]] && cpu_colour="fg=colour232,bg=colour2,bold"
 
+  local cpu_model_mode_pre="$(tmux show-option -gqv "@cpu-model-mode-pre")"
+
+
 
   # Start to apply tmux-cpu-model plugin
   if [[ "${align}" = "left" ]]; then
-    tmux set -g status-left-length ${new_status_left_length}
-    tmux set -g status-right-length ${default_status_right_length}
+    if [[ "${cpu_model_mode_pre}" != "left" ]]; then
+      tmux set -g status-left-length ${new_status_left_length}
+      tmux set -g status-right-length ${default_status_right_length}
 
-    tmux set -ag status-left "#[${cpu_colour}] ${cpu_model_name} "
+      tmux set -ag status-left "#[${cpu_colour}] ${cpu_model_name} "
+    fi
 
   elif [[ "${align}" = "right" ]]; then
-    tmux set -g status-left-length ${default_status_left_length}
-    tmux set -g status-right-length ${new_status_right_length}
+    if [[ "${cpu_model_mode_pre}" != "right" ]]; then
+      tmux set -g status-left-length ${default_status_left_length}
+      tmux set -g status-right-length ${new_status_right_length}
 
-    tmux set -ag status-right "#[${cpu_colour}] ${cpu_model_name} "
+      tmux set -ag status-right "#[${cpu_colour}] ${cpu_model_name} "
+    fi
 
   else
-    cpu_model_name=""
-    tmux set -g status-left-length ${default_status_left_length}
-    tmux set -g status-right-length ${default_status_right_length}
+    if [[ "${cpu_model_mode_pre}" = "left" ]] || [[ "${cpu_model_mode_pre}" = "right" ]] ; then
+      cpu_model_name=""
+      tmux set -g status-left-length ${default_status_left_length}
+      tmux set -g status-right-length ${default_status_right_length}
+    fi
   fi
+  tmux set -g @cpu-model-mode-pre ${align}
 }
 main
