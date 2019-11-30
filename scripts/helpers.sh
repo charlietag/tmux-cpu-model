@@ -14,8 +14,7 @@ get_cpu_model() {
   #local this_cpu_name="$(cat /proc/cpuinfo | grep 'model name' | grep -Eo 'CPU[[:print:]]+@ [[:digit:]|.]+GHz' | head -1)"
   local this_cpu_name="$(cat /proc/cpuinfo | grep 'model name' | cut -d':' -f2 | cut -d' ' -f2- | head -1)"
   local this_cpu_speed="$(cat /proc/cpuinfo | grep -i 'cpu mhz' | cut -d':' -f2 | cut -d' ' -f2 | head -1)"
-  local this_cpu_speed="$(($this_cpu_speed/1024))"
-  local this_cpu_speed="$(printf '%.*f\n' 1 ${this_cpu_speed}) GHz"  # round up by second float
+  local this_cpu_speed="$(echo "scale=2; ${this_cpu_speed}/1024" | bc) GHz"  # round up by second float
   local this_cpu_count="$(cat /proc/cpuinfo | grep 'model name' | wc -l)"
   echo "${this_cpu_name}(${this_cpu_speed} x${this_cpu_count})"
 }
