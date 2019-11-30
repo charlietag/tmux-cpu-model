@@ -12,8 +12,8 @@ main() {
   local default_status_right_length="$(tmux show-option -gqv "@default-status-right-length")"
 
   # Set new length
-  local new_status_left_length="$(( ${default_status_left_length} + 40))"
-  local new_status_right_length="$(( ${default_status_right_length} + 40))"
+  local new_status_left_length="$(( ${default_status_left_length} + 100))"
+  local new_status_right_length="$(( ${default_status_right_length} + 100))"
 
   # fetching the value of "cpu-model-*" var
   local cpu_model_name="$(get_cpu_model)"
