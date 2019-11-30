@@ -11,12 +11,13 @@ main() {
   local default_status_left_length="$(tmux show-option -gqv "@default-status-left-length")"
   local default_status_right_length="$(tmux show-option -gqv "@default-status-right-length")"
 
-  # Set new length
-  local new_status_left_length="$(( ${default_status_left_length} + 100))"
-  local new_status_right_length="$(( ${default_status_right_length} + 100))"
-
   # fetching the value of "cpu-model-*" var
   local cpu_model_name="$(get_cpu_model)"
+  local cpu_model_name_length="$(echo "4 + ${#cpu_model_name}" | bc)"
+
+  # Set new length
+  local new_status_left_length="$(( ${default_status_left_length} + ${cpu_model_name_length}))"
+  local new_status_right_length="$(( ${default_status_right_length} + ${cpu_model_name_length}))"
 
   # Setup options from .tmux.conf
   local align="$(tmux show-option -gqv "@cpu-model-mode")"
