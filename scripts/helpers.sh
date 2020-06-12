@@ -12,7 +12,7 @@ set_default_length() {
 
 get_cpu_model() {
   #local this_cpu_name="$(cat /proc/cpuinfo | grep 'model name' | grep -Eo 'CPU[[:print:]]+@ [[:digit:]|.]+GHz' | head -1)"
-  local this_cpu_info="$(tmux show-option -gqv "@@cpu-model-info")"
+  local this_cpu_info="$(tmux show-option -gqv "@cpu-model-info")"
 
   local this_cpu_name="$(cat /proc/cpuinfo | grep 'model name' | cut -d':' -f2 | cut -d' ' -f2- | head -1)"
   local this_cpu_speed="$(cat /proc/cpuinfo | grep -i 'cpu mhz' | cut -d':' -f2 | cut -d' ' -f2 | head -1)"
