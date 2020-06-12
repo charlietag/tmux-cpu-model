@@ -63,6 +63,7 @@ Here are all available options with their default values:
 
 ```bash
 @cpu-model-mode 'right' # [ left | right | none ]
+@cpu-model-info 'detail' # [ simple | detail ]
 @cpu-model-colour 'fg=colour232,bg=colour2,bold'    # define style for the displayed cpu info
 ```
 
@@ -78,6 +79,11 @@ set -g @plugin 'charlietag/tmux-cpu-model'
 
 # Automatically **append** cpu model into "status-left" or "status-right"
 set -g @cpu-model-mode 'right' # [ left | right | none ]
+
+# simple - only CPU frequency(GHz) xCore
+# detail - CPU Model name , frequency(GHz) xCore
+set -g @cpu-model-info 'detail' # [ simple | detail ]
+
 set -g @cpu-model-colour 'fg=colour232,bg=colour2,bold'
 ```
 
