@@ -74,25 +74,55 @@ main() {
 
 
   # --- For support tmux-split-statusbar ---
-  local cpu_model_colour_last="$(tmux show-option -gqv "@cpu-model-colour-last")"
-  local cpu_model_no_reload="$2"
-  if [[ "${cpu_model_no_reload}" != "no-reload" ]]; then
-    if [[ -n "${cpu_model_colour_last}" ]]; then
-      if [[ "${cpu_model_colour_last}" != "${cpu_colour}" ]]; then
-        #----- reload tmux-split-statusbar ---
-        local check_plugin_status="$(cat ~/.tmux.conf |awk '/^[ \t]*set(-option)? +-g +@plugin/ { gsub(/'\''/,""); gsub(/'\"'/,""); print $4 }' | grep 'charlietag/tmux-split-statusbar')"
+  local tmux_split_statusbar_reload="N"
 
-        if [[ -n "${check_plugin_status}" ]]; then
-          local plugin_script="$(readlink -m ~/.tmux/plugins/tmux-split-statusbar/tmux-split-statusbar.tmux)"
-          if [[ -f "${plugin_script}" ]]; then
-            ${plugin_script} reload
-          fi
-        fi
-        #----- reload tmux-split-statusbar ---
-      fi
+  #--- check cpu color scheme ---
+  local cpu_model_colour_last="$(tmux show-option -gqv "@cpu-model-colour-last")"
+
+  if [[ -n "${cpu_model_colour_last}" ]]; then
+    if [[ "${cpu_model_colour_last}" != "${cpu_colour}" ]]; then
+      #----- reload tmux-split-statusbar ---
+      tmux_split_statusbar_reload="Y"
+      #----- reload tmux-split-statusbar ---
     fi
   fi
   tmux set -g @cpu-model-colour-last ${cpu_colour}
+  #--- check cpu color scheme ---
+
+  #--- check cpu info ---
+  local cpu_model_name_length_last="$(tmux show-option -gqv "@cpu-model-name-length-last")"
+
+  if [[ -n "${cpu_model_name_length_last}" ]]; then
+    if [[ "${cpu_model_name_length_last}" != "${cpu_model_name_length}" ]]; then
+      #----- reload tmux-split-statusbar ---
+      tmux_split_statusbar_reload="Y"
+      #----- reload tmux-split-statusbar ---
+    fi
+  fi
+  tmux set -g @cpu-model-name-length-last ${cpu_model_name_length}
+  #--- check cpu info ---
+
+
+  #--- check no-reload ---
+  local cpu_model_no_reload="$2"
+  if [[ "${cpu_model_no_reload}" = "no-reload" ]]; then
+    tmux_split_statusbar_reload="N"
+  fi
+  #--- check no-reload ---
+
+  #----- reload tmux-split-statusbar ---
+  if [[ "${tmux_split_statusbar_reload}" = "Y" ]]; then
+    local check_plugin_status="$(cat ~/.tmux.conf |awk '/^[ \t]*set(-option)? +-g +@plugin/ { gsub(/'\''/,""); gsub(/'\"'/,""); print $4 }' | grep 'charlietag/tmux-split-statusbar')"
+
+    if [[ -n "${check_plugin_status}" ]]; then
+      local plugin_script="$(readlink -m ~/.tmux/plugins/tmux-split-statusbar/tmux-split-statusbar.tmux)"
+      if [[ -f "${plugin_script}" ]]; then
+        ${plugin_script} reload
+      fi
+    fi
+  fi
+  #----- reload tmux-split-statusbar ---
+
   # --- For support tmux-split-statusbar ---
 
 
