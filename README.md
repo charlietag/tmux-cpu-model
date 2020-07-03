@@ -62,11 +62,13 @@ tmux-cpu-mode-right:<br/>
 Here are all available options with their default values:
 
 ```bash
-@cpu-model-mode 'right' # [ left | right | none ]
-@cpu-model-info 'detail' # [ simple | detail ]
+@cpu-model-mode 'left'                              # [ left | right | none ]
+@cpu-model-info 'simple'                            # [ simple | detail ]
 @cpu-model-colour 'fg=colour232,bg=colour2,bold'    # define style for the displayed cpu info
-```
 
+@cpu-model-colour-dark-mode 'on'                    # [ on | off] , default off
+@cpu-model-colour-dark 'fg=colour252,bg=black,bold' # define style for the displayed cpu info (DARK MODE)
+```
 
 # Usage
 
@@ -78,13 +80,15 @@ Sample config in ~/.tmux.conf
 set -g @plugin 'charlietag/tmux-cpu-model'
 
 # Automatically **append** cpu model into "status-left" or "status-right"
-set -g @cpu-model-mode 'right' # [ left | right | none ]
+set -g @cpu-model-mode 'left'                                 # [ left | right | none ]
 
 # simple - only CPU frequency(GHz) xCore
 # detail - CPU Model name , frequency(GHz) xCore
-set -g @cpu-model-info 'detail' # [ simple | detail ]
+set -g @cpu-model-info 'simple'                               # [ simple | detail ]
+set -g @cpu-model-colour 'fg=colour232,bg=colour252,bold'
 
-set -g @cpu-model-colour 'fg=colour232,bg=colour2,bold'
+set -g @cpu-model-colour-dark-mode 'on' # [ on | off] , default off
+set -g @cpu-model-colour-dark 'fg=colour252,bg=black,bold'    # define style for the displayed cpu info (DARK MODE)
 ```
 
 Reload tmux config and check your cpu model name and counts
