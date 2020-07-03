@@ -5,6 +5,17 @@ source "$CURRENT_DIR/scripts/helpers.sh"
 
 
 main() {
+  local cpu_model_colour_dark_mode="off" # default: off
+  cpu_model_colour_dark_mode="$(tmux show-option -gqv "@cpu-model-colour-dark-mode")"
+
+  local cpu_model_dark_enabled="$1"
+  if [[ "${cpu_model_dark_enabled}" = "dark-on" ]]; then
+    cpu_model_colour_dark_mode="on"
+  elif [[ "${cpu_model_dark_enabled}" = "dark-off" ]]; then
+    cpu_model_colour_dark_mode="off"
+  fi
+
+
   # Backup default status char length for both status-right , status-left
   set_default_length
   # Set default length
@@ -21,8 +32,14 @@ main() {
 
   # Setup options from .tmux.conf
   local align="$(tmux show-option -gqv "@cpu-model-mode")"
-  local cpu_colour="$(tmux show-option -gqv "@cpu-model-colour")"
-  [[ -z "${cpu_colour}" ]] && cpu_colour="fg=colour232,bg=colour2,bold"
+
+  if [[ "${cpu_model_colour_dark_mode}" = "off" ]]; then
+    local cpu_colour="$(tmux show-option -gqv "@cpu-model-colour")"
+    [[ -z "${cpu_colour}" ]] && cpu_colour="fg=colour232,bg=colour2,bold"
+  else
+    local cpu_colour="$(tmux show-option -gqv "@cpu-model-colour-dark")"
+    [[ -z "${cpu_colour}" ]] && cpu_colour="fg=colour2,bg=black,bold"
+  fi
 
   local cpu_model_mode_pre="$(tmux show-option -gqv "@cpu-model-mode-pre")"
   local cpu_model_exists="$(tmux show-option -gqv "status-left"| grep -i cpu | grep -vE "^@" ; tmux show-option -gqv "status-right"| grep -i cpu | grep -vE "^@" )"
@@ -54,5 +71,32 @@ main() {
     fi
   fi
   tmux set -g @cpu-model-mode-pre ${align}
+
+
+  # --- For support tmux-split-statusbar ---
+  local cpu_model_colour_last="$(tmux show-option -gqv "@cpu-model-colour-last")"
+  local cpu_model_no_reload="$2"
+  if [[ "${cpu_model_no_reload}" != "no-reload" ]]; then
+    if [[ -n "${cpu_model_colour_last}" ]]; then
+      if [[ "${cpu_model_colour_last}" != "${cpu_colour}" ]]; then
+        #----- reload tmux-split-statusbar ---
+        local check_plugin_status="$(cat ~/.tmux.conf |awk '/^[ \t]*set(-option)? +-g +@plugin/ { gsub(/'\''/,""); gsub(/'\"'/,""); print $4 }' | grep 'charlietag/tmux-split-statusbar')"
+
+        if [[ -n "${check_plugin_status}" ]]; then
+          local plugin_script="$(readlink -m ~/.tmux/plugins/tmux-split-statusbar/tmux-split-statusbar.tmux)"
+          if [[ -f "${plugin_script}" ]]; then
+            ${plugin_script} reload
+          fi
+        fi
+        #----- reload tmux-split-statusbar ---
+      fi
+    fi
+  fi
+  tmux set -g @cpu-model-colour-last ${cpu_colour}
+  # --- For support tmux-split-statusbar ---
+
+
+
+
 }
-main
+main "$1" "$2"
